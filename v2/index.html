@@ -104,6 +104,82 @@
   #notes b{color:#e0b06a}
   .center{display:flex;flex-direction:column;justify-content:center;align-items:center;height:100%;text-align:center}
   .vmid{display:flex;flex-direction:column;justify-content:center;height:100%}
+
+  /* existem só no modo leitura (celular em pé) */
+  .mnotes{display:none}
+  #barra{display:none}
+
+  /* ============ MODO LEITURA — celular em pé ============
+     O palco de 1280×720 encolheria para ~30% num celular e ficaria ilegível.
+     Em tela estreita e em pé, o deck deixa de ser palco e vira documento
+     rolável: todos os slides empilhados, texto em corpo de leitura, recortes
+     do PDF inteiros e notas do apresentador à mão. Nada aqui afeta o desktop
+     nem o projetor — a consulta exige orientação retrato. */
+  @media (max-width:900px) and (orientation:portrait){
+    html,body{overflow:auto;height:auto}
+    #stage{position:static;transform:none !important;width:100%;height:auto;padding:0 8px 40px}
+    .slide{position:relative;display:block !important;height:auto;min-height:0;overflow:visible;
+           padding:26px 20px 20px;margin:0 0 14px;border-radius:8px}
+    .slide > div{padding-top:0 !important}
+    .chip{position:static;margin-bottom:14px;font-size:11px}
+    .num{position:static;display:block;margin-top:16px;text-align:right;font-size:12px}
+    h1{font-size:32px !important}
+    h2{font-size:25px !important}
+    h3{font-size:12px !important}
+    .quote,.quote.big{font-size:18px !important;max-width:none !important;line-height:1.45}
+    .kicker{font-size:16px !important}
+    .ref{font-size:14px;margin-top:12px}
+    ul.clean li{font-size:17px !important;margin-bottom:12px;padding-left:26px}
+    .rule{margin:16px 0 !important}
+    .cols,.cols.c64,.cols.c46{display:block;height:auto}
+    .cols > div + div{margin-top:22px}
+    .center,.vmid{display:block;height:auto;text-align:left}
+    .center h2,.center p{text-align:left !important}
+    .cards3{grid-template-columns:1fr;gap:14px;margin-top:16px}
+    .card{padding:16px 18px}
+    .card p{font-size:16px}
+    .imgbox{height:auto !important}
+    .imgfill{height:auto}
+    th{font-size:11px;padding:8px 9px}
+    td{font-size:15px !important;padding:9px}
+    .roomy td{font-size:16px !important;padding:12px 9px}
+    /* as tabelas de linhas vermelhas têm 3 colunas: no celular viram lista empilhada,
+       senão a coluna da citação fica com duas palavras por linha */
+    .ref3,.ref3 tbody,.ref3 tr,.ref3 td,.ref3 th{display:block;width:auto}
+    .ref3 tr:first-child{display:none}      /* a linha de cabeçalho ficaria como um vão vazio */
+    .ref3 tr{padding:14px 0;border-bottom:1px solid var(--linha)}
+    .ref3 tr:last-child{border-bottom:0}
+    .ref3 td{border:0;padding:1px 0;background:none !important}
+    .ref3 td:first-child{font-size:18px !important}
+    .ref3 td:nth-child(2){font-size:13px !important;color:#9a8c78;margin:3px 0 5px;line-height:1.35}
+    .ref3 td:nth-child(3){font-size:16px !important;line-height:1.4}
+    /* aqui se lê, não se projeta: o recorte do PDF aparece inteiro */
+    .clipbox{max-height:none !important}
+    .clipbox::after{display:none}
+    .cropcard{padding:10px 10px 8px}
+    .badge{font-size:11px;padding:4px 10px;top:-11px}
+    .cap{font-size:11px}
+    .qrbox,.qrgrid .qrbox{width:auto}
+    .qrbox svg,.qrgrid .qrbox svg{width:148px;height:148px;margin:0 auto}
+    .qrgrid{grid-template-columns:1fr 1fr;gap:20px;margin-top:24px}
+    .vcard .play{width:64px;height:64px}
+    .vcard .play::after{border-left-width:21px;border-top-width:13px;border-bottom-width:13px;margin-left:5px}
+    .vclose{position:static;margin-top:12px}
+    .vcard.playing .vclose{display:inline-block}
+    #notes{display:none !important}
+    .mnotes{margin-top:16px;padding:12px 14px;border-radius:6px;
+            background:rgba(60,40,15,.07);border-left:3px solid var(--ouro);
+            font-family:'Segoe UI',Arial,sans-serif;font-size:14px;line-height:1.5;color:var(--tinta2)}
+    .dark .mnotes{background:rgba(255,240,210,.07);color:#cdbb9e}
+    .comnotas .mnotes{display:block}
+    #barra{position:sticky;top:0;z-index:60;display:flex;gap:10px;align-items:center;
+           padding:11px 12px;margin-bottom:12px;background:rgba(15,12,9,.97);
+           border-bottom:1px solid rgba(176,138,62,.45)}
+    #barra b{font-family:'Segoe UI',Arial,sans-serif;font-size:13px;color:#e8dcc8;font-weight:600}
+    #barra button{margin-left:auto;background:transparent;color:#e0b06a;
+                  border:1px solid rgba(176,138,62,.6);border-radius:999px;padding:7px 14px;
+                  font-size:13px;font-family:'Segoe UI',Arial,sans-serif;cursor:pointer}
+  }
 </style>
 </head>
 <body>
@@ -489,7 +565,7 @@
 <section class="slide" data-notes="Três primeiras linhas vermelhas. Cada uma tem âncora no texto — se contestarem, abra o PDF impresso na página indicada. Homilia: a IA organiza; não celebra, não perdoa, não acompanha. Dados de fiéis: NUNCA, em ferramenta nenhuma, nem em teste, nem 'só para ver'.">
   <div class="chip">Bloco 4 · linhas vermelhas — 1 de 2</div>
   <div style="padding-top:80px">
-    <table>
+    <table class="ref3">
       <tr><th>Limite</th><th>Âncora</th><th>O que o texto diz</th></tr>
       <tr><td><b>Homilia e<br>acompanhamento</b></td><td>§102 · p. 36-37</td><td>Sistemas que desconhecem “a compaixão, a misericórdia, o perdão”</td></tr>
       <tr><td><b>Dados de fiéis<br>e sigilo</b></td><td>§137 · p. 47<br>§171 · p. 57</td><td>“cada gesto […] deixa rasto” — nunca, em ferramenta nenhuma</td></tr>
@@ -502,7 +578,7 @@
 <section class="slide" data-notes="As outras três. Imagem e vídeo falsos ganham slide próprio a seguir — é a que mais assusta e a mais concreta para uma paróquia. Custo ambiental liga direto com Laudato si'.">
   <div class="chip">Bloco 4 · linhas vermelhas — 2 de 2</div>
   <div style="padding-top:80px">
-    <table>
+    <table class="ref3">
       <tr><th>Limite</th><th>Âncora</th><th>O que o texto diz</th></tr>
       <tr><td><b>Imagem e vídeo<br>falsos</b></td><td>§132 · p. 45</td><td>A IA é “um poderoso multiplicador” da desinformação</td></tr>
       <tr><td><b>Crianças e<br>adolescentes</b></td><td>§141-142 · p. 48</td><td>Celular precoce, sono, atenção, assédio</td></tr>
@@ -796,10 +872,27 @@
 (function(){
   var slides=[].slice.call(document.querySelectorAll('.slide'));
   var i=0, notes=document.getElementById('notes'), showNotes=false;
-  slides.forEach(function(s,k){ var n=s.querySelector('.num'); if(n) n.textContent=k+1; });
+  /* celular em pé: o deck vira documento rolável (ver "MODO LEITURA" no CSS) */
+  var leitura=matchMedia('(max-width:900px) and (orientation:portrait)');
+  slides.forEach(function(s,k){
+    s.id=String(k+1);
+    var n=s.querySelector('.num'); if(n) n.textContent=k+1;
+    var t=s.getAttribute('data-notes');
+    if(t){
+      var d=document.createElement('div');
+      d.className='mnotes';
+      d.innerHTML='<b>Nota do apresentador · </b>'+t;
+      if(n) s.insertBefore(d,n); else s.appendChild(d);   /* o número fecha o cartão */
+    }
+  });
   function fit(){
-    var s=Math.min(innerWidth/1280, innerHeight/720);
-    document.getElementById('stage').style.transform='translate(-50%,-50%) scale('+s+')';
+    var st=document.getElementById('stage');
+    if(leitura.matches){ st.style.transform='none'; return; }
+    /* clientWidth/clientHeight, e não innerWidth: no celular deitado o innerWidth
+       vem inflado pelo page-scale e o slide vaza para fora da tela */
+    var d=document.documentElement;
+    var s=Math.min(d.clientWidth/1280, d.clientHeight/720);
+    st.style.transform='translate(-50%,-50%) scale('+s+')';
   }
   function stopVideos(){
     [].forEach.call(document.querySelectorAll('.vcard.playing'),function(c){
@@ -825,12 +918,14 @@
   function show(n){
     stopVideos();
     i=Math.max(0,Math.min(slides.length-1,n));
+    if(leitura.matches) return;   /* no modo leitura todos os slides ficam visíveis */
     slides.forEach(function(s,k){s.classList.toggle('on',k===i)});
     notes.innerHTML='<b>Slide '+(i+1)+'/'+slides.length+'</b> — '+(slides[i].getAttribute('data-notes')||'');
     notes.style.display=showNotes?'block':'none';
     location.hash=i+1;
   }
   addEventListener('resize',fit);
+  addEventListener('orientationchange',function(){ setTimeout(fit,120); });
   addEventListener('keydown',function(e){
     if(e.key==='Escape'){ stopVideos(); return; }
     if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown') show(i+1);
@@ -847,10 +942,11 @@
       else if(!card.classList.contains('playing')) playVideo(card);
       return;
     }
+    if(leitura.matches) return;   /* rolagem normal: clique não navega */
     if(e.clientX>innerWidth*0.2) show(i+1); else show(i-1);
   });
   var touchX=null;
-  addEventListener('touchstart',function(e){ touchX=inVideo(e.target)?null:e.touches[0].clientX; });
+  addEventListener('touchstart',function(e){ touchX=(leitura.matches||inVideo(e.target))?null:e.touches[0].clientX; });
   addEventListener('touchend',function(e){
     if(touchX===null)return;
     var dx=e.changedTouches[0].clientX-touchX;
@@ -862,9 +958,25 @@
       m.insertAdjacentHTML('beforeend','<br>abre numa aba nova do navegador');
     });
   }
+  /* barra fixa do modo leitura — invisível no desktop */
+  var barra=document.createElement('div');
+  barra.id='barra';
+  barra.innerHTML='<b>Magnifica Humanitas · '+slides.length+' slides</b>'+
+                  '<button type="button">mostrar notas</button>';
+  document.body.insertBefore(barra,document.getElementById('stage'));
+  barra.querySelector('button').addEventListener('click',function(e){
+    e.stopPropagation();
+    this.textContent=document.body.classList.toggle('comnotas')?'ocultar notas':'mostrar notas';
+  });
+  leitura.addEventListener('change',function(){
+    stopVideos(); fit();
+    if(!leitura.matches) show(i);   /* voltou ao palco: reativa o slide corrente */
+  });
+
   fit();
   var h=parseInt((location.hash||'').replace('#',''));
   show(isNaN(h)?0:h-1);
+  if(leitura.matches && !isNaN(h) && slides[h-1]) slides[h-1].scrollIntoView();
 })();
 </script>
 </body>
