@@ -74,16 +74,18 @@
   .rule{width:64px;height:4px;background:var(--ouro);margin:26px 0}
 
   /* ---- vídeo ---- */
-  .vcard{position:relative;border-radius:8px;overflow:hidden;background:#0d0a08;
+  /* overflow visível para o botão "fechar" poder ficar abaixo do player */
+  .vcard{position:relative;border-radius:8px;background:#0d0a08;
          border:1px solid rgba(176,138,62,.4);box-shadow:0 16px 40px rgba(0,0,0,.5);cursor:pointer}
-  .vcard img.thumb{width:100%;display:block}
-  .vcard iframe{width:100%;aspect-ratio:16/9;display:block;border:0}
+  .vcard img.thumb{width:100%;display:block;border-radius:7px}
+  .vcard iframe{width:100%;aspect-ratio:16/9;display:block;border:0;border-radius:7px}
   .vcard .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
         width:104px;height:104px;border-radius:50%;border:0;background:rgba(122,31,43,.94);
         box-shadow:0 8px 30px rgba(0,0,0,.6);cursor:pointer;display:flex;align-items:center;justify-content:center}
   .vcard .play::after{content:'';border-left:34px solid #f7ecd8;border-top:21px solid transparent;border-bottom:21px solid transparent;margin-left:9px}
   .vcard.playing .play,.vcard.playing img.thumb{display:none}
-  .vclose{position:absolute;top:10px;right:10px;z-index:3;display:none;border:0;cursor:pointer;
+  /* fora do player: em cima dele o botão colidiria com os controles do YouTube */
+  .vclose{position:absolute;top:calc(100% + 14px);right:0;z-index:3;display:none;border:0;cursor:pointer;
         background:rgba(15,12,9,.86);color:#e8dcc8;font-family:'Segoe UI',Arial,sans-serif;font-size:14px;
         padding:7px 14px;border-radius:999px;border:1px solid rgba(176,138,62,.5)}
   .vcard.playing .vclose{display:block}
