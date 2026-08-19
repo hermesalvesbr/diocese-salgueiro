@@ -1,0 +1,67 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<title>Cartões dos três compromissos</title>
+<style>
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { font-family: "Noto Serif", Georgia, serif; color: #1a1a1a; }
+
+.folha { width: 210mm; height: 297mm; position: relative; page-break-after: always; }
+.folha:last-child { page-break-after: auto; }
+.grade { position: absolute; top: 8.5mm; left: 5mm; width: 200mm; height: 280mm;
+         display: grid; grid-template-columns: 100mm 100mm; grid-template-rows: 140mm 140mm; }
+.card { width: 100mm; height: 140mm; padding: 9mm 8.5mm; display: flex; flex-direction: column; overflow: hidden; }
+
+/* marcas de corte */
+.tick { position: absolute; background: #999; }
+.tv { width: .3mm; height: 5mm; } .th { height: .3mm; width: 5mm; }
+
+/* ---------- frente ---------- */
+.eyebrow { font-family: "Noto Sans", sans-serif; font-size: 5.9pt; letter-spacing: .13em;
+           text-transform: uppercase; color: #7a5c2e; }
+.card h1 { font-family: "Noto Serif Display", "Noto Serif", serif; font-size: 15pt; font-weight: 600;
+           margin: 2.6mm 0 1mm; letter-spacing: -.01em; }
+.card .lead { font-size: 7.4pt; color: #5d5346; line-height: 1.4; margin-bottom: 4.6mm; }
+.campo { margin-bottom: 3.6mm; }
+.campo .rot { font-family: "Noto Sans", sans-serif; font-size: 7.3pt; font-weight: 700; color: #4a3411; }
+.campo .rot b { color: #a8895a; font-weight: 700; margin-right: 1.2mm; }
+.campo .hint { font-family: "Noto Sans", sans-serif; font-size: 6.2pt; color: #918876; margin-top: .5mm; }
+.campo .lin { border-bottom: .5pt solid #cfc6b4; height: 10.4mm; }
+.rodape { margin-top: auto; border-top: .8pt solid #e0d7c4; padding-top: 2.6mm;
+          font-family: "Noto Sans", sans-serif; font-size: 6.4pt; color: #6f6656; }
+.rodape .lg { display: inline-block; border-bottom: .4pt solid #cfc6b4; height: 3.2mm; }
+
+/* ---------- verso ---------- */
+.verso .marca { font-family: "Noto Sans", sans-serif; font-size: 5.9pt; letter-spacing: .13em;
+                text-transform: uppercase; color: #a8895a; }
+.verso h2 { font-family: "Noto Sans", sans-serif; font-size: 8.4pt; font-weight: 700; color: #4a3411;
+            margin: 2.4mm 0 4mm; letter-spacing: .01em; }
+.painel { background: #f6f1e7; padding: 6mm 6mm 5.4mm; display: flex; flex-direction: column;
+          justify-content: center; flex: 1; }
+.perg { padding-left: 4mm; border-left: 1.6pt solid #b99a63; }
+.perg + .perg { margin-top: 6mm; }
+.perg p { font-size: 10.4pt; line-height: 1.38; }
+.perg .ref { font-family: "Noto Sans", sans-serif; font-size: 6.2pt; color: #918876; margin-top: 1.6mm; }
+.verso .jejum { margin-top: 4.4mm; border-top: .8pt solid #e0d7c4; padding-top: 3mm; }
+.verso .jejum .q { font-size: 7.6pt; font-style: italic; color: #4a4238; line-height: 1.4; }
+.verso .verbos { font-family: "Noto Sans", sans-serif; font-size: 6.3pt; color: #7a5c2e;
+                 letter-spacing: .04em; margin-top: 2.4mm; }
+</style></head><body>
+
+<!-- ======== FRENTE ======== -->
+<section class="folha">
+  <div class="grade">
+    <!--CARDS_FRENTE-->
+  </div>
+  <!--TICKS-->
+</section>
+
+<!-- ======== VERSO ======== -->
+<section class="folha">
+  <div class="grade">
+    <!--CARDS_VERSO-->
+  </div>
+  <!--TICKS-->
+</section>
+
+</body></html>
